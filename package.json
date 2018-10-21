@@ -1,0 +1,50 @@
+{
+  "name": "electron-react-boilerplate",
+  "version": "0.0.1",
+  "description": "A minimal electron React.js boilerplate",
+  "main": "main.js",
+  "scripts": {
+    "dev": "yarn dev:browser & yarn dev:electron",
+    "dev:browser": "parcel ./src/index.html -d build/",
+    "dev:electron": "wait-on http://localhost:1234 && ELECTRON_START_URL=http://localhost:1234 electron ./",
+    "build": "yarn build:clean && yarn build:browser && yarn build:electron",
+    "build:clean": "rm -rf build & rm -rf dist",
+    "build:browser": "parcel build ./src/index.html -d build/ --public-url ./",
+    "build:electron": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "lint": "standard"
+  },
+  "build": {
+    "productName": "Electron React Boilerplate",
+    "appId": "your.app.id",
+    "mac": {
+      "category": "your.category.id"
+    },
+    "files": [
+      "main.js",
+      "build/*"
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "author": "Henrik Wenz <handtrix@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "electron-window-state": "^5.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "electron": "^3.0.5",
+    "electron-builder": "^20.28.4",
+    "parcel-bundler": "^1.10.3",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "standard": "^12.0.1",
+    "wait-on": "^3.1.0"
+  }
+}
